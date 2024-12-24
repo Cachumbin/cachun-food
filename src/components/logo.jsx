@@ -1,12 +1,18 @@
 import Logo from "../assets/Recurso 1.png";
 
-const logo = () => {
+const LogoComponent = () => {
   return (
     <div className="logoContainer">
-      <h1 className="logoText">CachunFood</h1>
-      <img src={Logo} alt="" className="logoImg" />
+      <div className="frontFace face">
+        <h1 className="logoText">CachunFood</h1>
+        <img src={Logo} alt="Logo" className="logoImg" />
+      </div>
+      <div className="backFace face">
+        <p>Login</p>
+        <p>SignUp</p>
+      </div>
     </div>
   );
 };
 
-export default logo;
+export default LogoComponent;

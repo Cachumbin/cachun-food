@@ -1,0 +1,18 @@
+.logoContainer {
+    width: 400px;
+    height: 330px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    margin: 20px;
+    border: 3px solid rgb(150, 150, 0);
+}
+
+.logoText {
+    align-self: center;
+}
+
+.logoImg {
+    width: 250px;
+    align-self: center;
+}

@@ -36,6 +36,7 @@
   flex-direction: column; /* Stacks buttons vertically */
   align-items: center; /* Centers buttons horizontally */
   z-index: 1; /* Places the back face below the front face */
+  transition-delay: 0.5s; /* Starts the back face transition after the front face is done */
 }
 
 .logoContainer:hover .frontFace {

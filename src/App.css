@@ -2,47 +2,60 @@
   width: 400px;
   height: 360px;
   position: relative;
-  perspective: 1000px; /* Adds depth for 3D animations */
-  overflow: hidden; /* Prevents content from spilling out */
+  perspective: 1000px;
+  overflow: hidden;
 }
 
 .logoText {
-  align-self: center; /* Centers text vertically */
-  justify-self: center; /* Centers text horizontally */
+  align-self: center;
+  justify-self: center;
 }
 
 .face {
   width: 100%;
   height: 100%;
-  display: flex; /* Makes child elements flexible for alignment */
-  flex-direction: column; /* Aligns children in a column layout */
-  position: absolute; /* Ensures both faces overlap completely */
-  transition: transform 0.5s ease; /* Adds smooth animation for transform changes */
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  transition: transform 0.5s ease;
 }
 
 .logoImg {
   width: 80%;
   height: 80%;
-  align-self: center; /* Centers the logo image horizontally */
+  align-self: center;
 }
 
 .frontFace {
-  z-index: 2; /* Keeps the front face above the back face */
+  z-index: 2;
+  transition-delay: 0.5s;
 }
 
 .backFace {
-  transform: translateY(-100%); /* Moves the back face out of view above */
-  display: flex; /* Ensures buttons are flexibly aligned */
-  flex-direction: column; /* Stacks buttons vertically */
-  align-items: center; /* Centers buttons horizontally */
-  z-index: 1; /* Places the back face below the front face */
-  transition-delay: 0.5s; /* Starts the back face transition after the front face is done */
+  transform: translateY(-100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  transition-delay: 0s;
 }
 
 .logoContainer:hover .frontFace {
-  transform: translateY(-100%); /* Moves the front face up when hovered */
+  transform: translateY(-100%);
+  transition-delay: 0s;
 }
 
 .logoContainer:hover .backFace {
-  transform: translateY(0); /* Brings the back face down after front face moves */
+  transform: translateY(0);
+  transition-delay: 0.5s;
+}
+
+.logoContainer:not(:hover) .backFace {
+  transform: translateY(-100%);
+  transition-delay: 0s;
+}
+
+.logoContainer:not(:hover) .frontFace {
+  transform: translateY(0);
+  transition-delay: 0.5s;
 }

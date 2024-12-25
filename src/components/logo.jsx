@@ -8,8 +8,8 @@ const LogoComponent = () => {
         <img src={Logo} alt="Logo" className="logoImg" />
       </div>
       <div className="backFace face">
-        <p>Login</p>
-        <p>SignUp</p>
+        <button>Login</button>
+        <button>SignUp</button>
       </div>
     </div>
   );

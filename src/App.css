@@ -1,63 +1,47 @@
 .logoContainer {
-    width: 400px;
-    height: 330px;
-    position: relative;
-    perspective: 1000px;
-    overflow: hidden; /* Prevents content from spilling out */
-  }
-  
-  .face {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    backface-visibility: hidden;
-    opacity: 1;
-  }
-  
-  /* Front Face Animation */
-  .frontFace {
-    animation: frontFaceMove 1.2s forwards;
-  }
-  
-  /* Back Face Animation */
-  .backFace {
-    opacity: 0;
-    animation: backFaceMove 1.2s forwards;
-    animation-delay: 0.6s; /* Delay to ensure front face finishes moving */
-  }
-  
-  /* Define Animations */
-  @keyframes frontFaceMove {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-100%);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(-200%);
-      opacity: 0;
-    }
-  }
-  
-  @keyframes backFaceMove {
-    0% {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  
-  /* Hover Trigger */
-  .logoContainer:hover .frontFace {
-    animation: frontFaceMove 1.2s forwards;
-  }
-  
-  .logoContainer:hover .backFace {
-    animation: backFaceMove 1.2s forwards;
-  }
-  
+  width: 400px;
+  height: 360px;
+  position: relative;
+  perspective: 1000px; /* Adds depth for 3D animations */
+  overflow: hidden; /* Prevents content from spilling out */
+}
+
+.logoText {
+  align-self: center; /* Centers text vertically */
+  justify-self: center; /* Centers text horizontally */
+}
+
+.face {
+  width: 100%;
+  height: 100%;
+  display: flex; /* Makes child elements flexible for alignment */
+  flex-direction: column; /* Aligns children in a column layout */
+  position: absolute; /* Ensures both faces overlap completely */
+  transition: transform 0.5s ease; /* Adds smooth animation for transform changes */
+}
+
+.logoImg {
+  width: 80%;
+  height: 80%;
+  align-self: center; /* Centers the logo image horizontally */
+}
+
+.frontFace {
+  z-index: 2; /* Keeps the front face above the back face */
+}
+
+.backFace {
+  transform: translateY(-100%); /* Moves the back face out of view above */
+  display: flex; /* Ensures buttons are flexibly aligned */
+  flex-direction: column; /* Stacks buttons vertically */
+  align-items: center; /* Centers buttons horizontally */
+  z-index: 1; /* Places the back face below the front face */
+}
+
+.logoContainer:hover .frontFace {
+  transform: translateY(-100%); /* Moves the front face up when hovered */
+}
+
+.logoContainer:hover .backFace {
+  transform: translateY(0); /* Brings the back face down after front face moves */
+}

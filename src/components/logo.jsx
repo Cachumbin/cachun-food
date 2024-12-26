@@ -9,7 +9,6 @@ const LogoComponent = () => {
       </div>
       <div className="backFace face">
         <button>Login</button>
-        <button>SignUp</button>
       </div>
     </div>
   );

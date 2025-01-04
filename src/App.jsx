@@ -1,4 +1,5 @@
 import Logo from "./components/logo";
+import { auth, db } from "./components/firebaseConfig";
 
 const App = () => {
   return (

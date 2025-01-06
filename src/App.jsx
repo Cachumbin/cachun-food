@@ -1,5 +1,6 @@
 import Logo from "./components/logo";
-import { auth, db } from "./components/firebaseConfig";
+import { db } from "./components/firebaseConfig";
+import { useEffect, useState } from "react";
 
 const App = () => {
   return (

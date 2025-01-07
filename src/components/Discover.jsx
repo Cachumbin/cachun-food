@@ -40,27 +40,48 @@ const Discover = () => {
   }, []);
 
   useEffect(() => {
-    const finalRecipes = [];
-
-    for (let i = 0; i < rawDiscover.length; i++) {
-      const query = rawDiscover[i].replace(/\s/g, "+").toLowerCase();
-      fetch(`https://api.api-ninjas.com/v1/recipe?query=${query}`, {
-        method: "GET",
-        headers: {
-          "X-Api-Key": import.meta.env.VITE_API_NINJAS_API_KEY,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data[0]);
-          finalRecipes.push(data[0]);
-        });
+    async function fetchData() {
+      const fetchedData = [];
+      for (let recipe of rawDiscover) {
+        const response = await fetch(
+          `https://api.api-ninjas.com/v1/recipe?query=${recipe}`,
+          {
+            method: "GET",
+            headers: {
+              "X-Api-Key": import.meta.env.VITE_API_NINJAS_API_KEY,
+            },
+          }
+        );
+        const data = await response.json();
+        if (data[1] !== undefined) {
+          fetchedData.push(data[1]);
+        }
+      }
+      setDiscover(fetchedData);
     }
-    console.log(finalRecipes);
-    setDiscover(finalRecipes);
+    fetchData();
   }, [rawDiscover]);
 
-  return <div>si</div>;
+  return (
+    <div>
+      <ul>
+        {discover.map((recipe) => {
+          return (
+            <li key={recipe.title}>
+              <h2>{recipe.title}</h2>
+            </li>
+          );
+        })}
+      </ul>
+      <button
+        onClick={() => {
+          console.log(discover);
+        }}
+      >
+        get
+      </button>
+    </div>
+  );
 };
 
 export default Discover;

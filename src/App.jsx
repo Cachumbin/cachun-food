@@ -1,7 +1,7 @@
 import Logo from "./components/logo";
 import Discover from "./components/Discover";
+import Search from "./components/Search";
 import { db } from "./components/firebaseConfig";
-//import { useEffect, useState } from "react";
 
 const App = () => {
   return (
@@ -9,6 +9,7 @@ const App = () => {
       <Logo />
       <p>App</p>
       <Discover />
+      <Search />
     </div>
   );
 };

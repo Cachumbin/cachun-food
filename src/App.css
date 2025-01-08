@@ -1,3 +1,6 @@
+/*---------Logo sign---------------*/
+
+
 .logoContainer {
   width: 400px;
   height: 360px;
@@ -58,4 +61,69 @@
 .logoContainer:not(:hover) .frontFace {
   transform: translateY(0);
   transition-delay: 0.5s;
+}
+
+
+
+/*------------Menu-----------------*/
+
+.menu-container {
+  position: fixed;
+  bottom: 20px; /* Positioned at the bottom */
+  right: 20px; /* Positioned at the right */
+  width: 250px;
+  height: auto;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transform: scale(0);
+  transition: transform 0.3s ease, bottom 0.3s ease;
+}
+
+.menu-container.open {
+  transform: scale(1); /* Scale to full size when open */
+  bottom: 100px; /* Moves to a higher position when open */
+}
+
+.menu-container.closed {
+  transform: scale(0);
+}
+
+.menu-toggle {
+  cursor: pointer;
+  background-color: #444;
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 5px;
+  font-weight: bold;
+  border: none;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.menu-toggle:hover {
+  background-color: #555;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+}
+
+.search-container input {
+  width: 80%;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #fff;
+  border-radius: 5px;
+  background-color: #444;
+  color: white;
+}
+
+.search-container input:focus {
+  outline: none;
 }

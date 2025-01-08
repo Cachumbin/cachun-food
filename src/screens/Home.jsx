@@ -1,18 +1,14 @@
 import Logo from "../components/logo";
 import Discover from "../components/Discover";
-import Search from "../components/Search";
+import Menu from "../components/Menu";
 
 const Home = () => {
-  const fetchFunction = async (search) => {
-    console.log(search);
-  };
-
   return (
     <div>
       <Logo />
       <p>App</p>
       <Discover />
-      <Search fetchFunction={fetchFunction} />
+      <Menu />
     </div>
   );
 };

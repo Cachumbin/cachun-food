@@ -5,8 +5,8 @@ import Saved from "../screens/Saved";
 const RoutesForApp = () => {
   return (
     <Routes>
-      <Route exact path="/" component={Home} />
-      <Route path="/saved" component={Saved} />
+      <Route exact path="/" element={<Home />} />
+      <Route path="/saved" element={<Saved />} />
     </Routes>
   );
 };

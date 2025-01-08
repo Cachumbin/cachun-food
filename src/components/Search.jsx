@@ -1,24 +1,30 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
-const Search = () => {
+const debounce = (fetchingFunction, delay) => {
+  let timeout;
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      fetchingFunction(...args);
+    }, delay);
+  };
+};
+
+const Search = ({ fetchFunction }) => {
   const [search, setSearch] = useState("");
 
-  const debounce = (fetchingFunction, delay) => {
-    let timeout;
-    return (...args) => {
-      clearTimeout(timeout);
-    };
+  const debounceSearch = useCallback(debounce(fetchFunction, 500), [
+    fetchFunction,
+  ]);
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    debounceSearch(e.target.value);
   };
 
   return (
     <div>
-      <input
-        type="text"
-        value={search}
-        onChange={(e) => {
-          setSearch(e.target.value);
-        }}
-      />
+      <input type="text" value={search} onChange={handleSearch} />
     </div>
   );
 };

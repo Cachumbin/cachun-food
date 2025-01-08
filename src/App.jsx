@@ -1,20 +1,11 @@
-import Logo from "./components/logo";
-import Discover from "./components/Discover";
-import Search from "./components/Search";
-import { db } from "./components/firebaseConfig";
+import { BrowserRouter as Router } from "react-router-dom";
+import RoutesForApp from "./router";
 
 const App = () => {
-  const fetchFunction = async (search) => {
-    console.log(search);
-  };
-
   return (
-    <div>
-      <Logo />
-      <p>App</p>
-      <Discover />
-      <Search fetchFunction={fetchFunction} />
-    </div>
+    <Router>
+      <RoutesForApp />
+    </Router>
   );
 };
 

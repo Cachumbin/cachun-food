@@ -1,4 +1,5 @@
 import Search from "./Search";
+import Card from "./Card";
 import { useState } from "react";
 
 const Menu = () => {
@@ -21,8 +22,20 @@ const Menu = () => {
     setResult(data);
   };
   return (
-    <div>
+    <div className="menu-container">
       <Search fetchFunction={fetchFunction} />
+      <ul>
+        {result.map((recipe) => {
+          return (
+            <Card
+              key={recipe.title}
+              title={recipe.title}
+              ingredients={recipe.ingredients}
+              servings={recipe.servings}
+            />
+          );
+        })}
+      </ul>
     </div>
   );
 };

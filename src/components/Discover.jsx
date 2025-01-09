@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Card from "./Card";
 
 const Discover = () => {
   const [rawDiscover, setRawDiscover] = useState([]);
@@ -67,9 +68,12 @@ const Discover = () => {
       <ul>
         {discover.map((recipe) => {
           return (
-            <li key={recipe.title}>
-              <h2>{recipe.title}</h2>
-            </li>
+            <Card
+              key={recipe.title}
+              title={recipe.title}
+              ingredients={recipe.ingredients}
+              servings={recipe.servings}
+            />
           );
         })}
       </ul>

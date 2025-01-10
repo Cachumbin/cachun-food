@@ -77,6 +77,9 @@
   padding: 20px;
   border: 5px solid #c2a883;
   border-radius: 10px;
+  height: 280px;
+  align-self: center;
+  margin-right: 500px;
 }
 
 /* -------Book Styles------- */
@@ -99,4 +102,15 @@
   padding: 10px;
   height: 100%;
   border-radius: 5px;
+}
+
+
+
+/*-------Container Styles---------*/
+
+.upper-container {
+  display: flex;
+  justify-content: space-between;
+  height: 50vh;
+  background-color: #f8f4ec;
 }

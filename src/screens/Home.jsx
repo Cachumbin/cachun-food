@@ -5,9 +5,10 @@ import Menu from "../components/Menu";
 const Home = () => {
   return (
     <div>
-      <Logo />
-      <p>App</p>
-      <Discover />
+      <section className="upper-container">
+        <Logo />
+        <Discover />
+      </section>
       <Menu />
     </div>
   );

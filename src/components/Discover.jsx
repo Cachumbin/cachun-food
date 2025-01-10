@@ -1,5 +1,26 @@
 import { useState, useEffect } from "react";
-import Card from "./Card";
+
+const colors = ["#e63946", "#457b9d", "#a8dadc", "#f4a261", "#2a9d8f"];
+
+const getRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
+const getRandomHeight = () => `${150 + Math.floor(Math.random() * 100)}px`;
+
+const Book = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div
+      className={`book ${isOpen ? "open" : ""}`}
+      style={{
+        backgroundColor: getRandomColor(),
+        height: getRandomHeight(),
+      }}
+      onClick={() => setIsOpen(!isOpen)}
+    >
+      {isOpen && <div className="book-content">Book Opened!</div>}
+    </div>
+  );
+};
 
 const Discover = () => {
   const [rawDiscover, setRawDiscover] = useState([]);
@@ -64,26 +85,10 @@ const Discover = () => {
   }, [rawDiscover]);
 
   return (
-    <div>
-      <ul>
-        {discover.map((recipe) => {
-          return (
-            <Card
-              key={recipe.title}
-              title={recipe.title}
-              ingredients={recipe.ingredients}
-              servings={recipe.servings}
-            />
-          );
-        })}
-      </ul>
-      <button
-        onClick={() => {
-          console.log(discover);
-        }}
-      >
-        get
-      </button>
+    <div className="discover-container">
+      {discover.map((recipe, index) => (
+        <Book key={index} />
+      ))}
     </div>
   );
 };

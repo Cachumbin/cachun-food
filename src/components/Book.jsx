@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./Discover.css";
 
 const colors = ["#e63946", "#457b9d", "#a8dadc", "#f4a261", "#2a9d8f"];
 
@@ -23,14 +22,4 @@ const Book = () => {
   );
 };
 
-const Discover = () => {
-  return (
-    <div className="discover-container">
-      {Array.from({ length: 20 }).map((_, index) => (
-        <Book key={index} />
-      ))}
-    </div>
-  );
-};
-
-export default Discover;
+export default Book;

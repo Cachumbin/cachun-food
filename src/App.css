@@ -71,7 +71,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 0;
   background-color: #f8f4ec;
   padding: 20px;
@@ -81,9 +81,9 @@
 
 /* -------Book Styles------- */
 .book {
-  width: 30px;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  width: 50px;
+  border-radius: 2px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, height 0.3s ease;
   cursor: pointer;
 }

@@ -7,17 +7,22 @@ const getRandomHeight = () => `${150 + Math.floor(Math.random() * 100)}px`;
 
 const Book = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [color] = useState(getRandomColor());
+  const [height] = useState(getRandomHeight());
 
   return (
     <div
       className={`book ${isOpen ? "open" : ""}`}
       style={{
-        backgroundColor: getRandomColor(),
-        height: getRandomHeight(),
+        backgroundColor: color,
+        height: height,
       }}
       onClick={() => setIsOpen(!isOpen)}
     >
-      {isOpen && <div className="book-content">Book Opened!</div>}
+      <div className="book-front"></div>
+      <div className="book-spine"></div>
+      <div className="book-back"></div>
+      {isOpen && <div className="book-content">Book content</div>}
     </div>
   );
 };

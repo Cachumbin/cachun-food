@@ -66,7 +66,12 @@ const Discover = () => {
   return (
     <div className="discover-container">
       {discover.map((recipe, index) => (
-        <Book key={index} />
+        <Book
+          key={index}
+          title={recipe.title}
+          ingredients={recipe.ingredients}
+          servings={recipe.servings}
+        />
       ))}
     </div>
   );

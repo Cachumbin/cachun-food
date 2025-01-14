@@ -7,9 +7,7 @@ const Home = () => {
     <div>
       <section className="upper-container">
         <Logo />
-        <Discover />
       </section>
-      <Menu />
     </div>
   );
 };

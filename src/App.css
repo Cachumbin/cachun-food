@@ -1,3 +1,26 @@
+/*-------------body--------------------*/
+
+body {
+  background: repeating-linear-gradient(
+    0deg,
+    #444444,
+    #444444 2px,
+    rgb(0,0,0,0) 2px,
+    rgb(0,0,0,0)  40px
+  ), repeating-linear-gradient(
+    90deg,
+    #444444,
+    #444444 2px,
+    #E5E5E5 2px,
+    #E5E5E5 40px
+  );
+  height: 100vh;
+  margin: 0;
+}
+
+
+
+
 /*---------Logo sign---------------*/
 
 
@@ -61,95 +84,4 @@
 .logoContainer:not(:hover) .frontFace {
   transform: translateY(0);
   transition-delay: 0.5s;
-}
-
-
-
-/*------------Discover booshelf-----------------*/
-
-.discover-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 0;
-  background-color: #f8f4ec;
-  padding: 20px;
-  border: 5px solid #c2a883;
-  border-radius: 10px;
-  height: 280px;
-  align-self: center;
-  margin-right: 500px;
-}
-
-/* -------Book Styles------- */
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  background-color: #f5f5f5;
-}
-
-.book-container {
-  perspective: 1000px;
-  cursor: pointer;
-}
-
-.book {
-  position: relative;
-  width: 100px;
-  transform-style: preserve-3d;
-  transform: rotateY(0deg) translateZ(-50px);
-  transition: transform 0.5s ease-in-out, translateZ 0.5s ease-in-out;
-}
-
-.book.open {
-  transform: rotateY(-90deg) translateZ(20px);
-}
-
-.book-spine {
-  position: absolute;
-  width: 50px;
-  height: 100%;
-  background-color: #8d99ae;
-  transform: rotateY(0deg) translateZ(25px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.book-front {
-  position: absolute;
-  width: 100px;
-  height: 100%;
-  background-color: #2b2d42;
-  color: #fff;
-  transform: rotateY(90deg) translateZ(25px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.book-back {
-  position: absolute;
-  width: 100px;
-  height: 100%;
-  background-color: #d90429;
-  transform: rotateY(-90deg) translateZ(25px);
-}
-
-
-/*-------Container Styles---------*/
-
-.upper-container {
-  display: flex;
-  justify-content: space-between;
-  height: 50vh;
-  background-color: #f8f4ec;
 }

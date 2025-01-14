@@ -1,3 +1,21 @@
+:root {
+  --yellow: #FFDD70;
+  --pink-light: #FFB4BA;
+  --blue-light: #A3D8F4;
+  --purple: #7E57C2;
+  --navy: #2C2E43;
+  --red: #E63946;
+  --peach: #F5D3C8;
+  --orange: #E39D66;
+  --pink-dark: #EAB6C5;
+  --green: #A1CDA8;
+  
+  --outline-color: #444444;
+  --white-bg: #E5E5E5;
+  --overall-bg: #E7E6D1;
+}
+
+
 /*-------------body--------------------*/
 
 body {

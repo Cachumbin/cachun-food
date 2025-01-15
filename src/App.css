@@ -44,6 +44,7 @@ body {
   );
   height: 100vh;
   margin: 0;
+  overflow: hidden;
 }
 
 
@@ -133,6 +134,7 @@ body {
 .logo-content-page {
   flex: 1 0 auto;
   width: 100%;
+  height: 100%;
 }
 
 .logo-1 img,
@@ -165,3 +167,35 @@ body {
   align-items: center;
   justify-content: space-evenly;
 }
+
+.logo-signout {
+  display: flex;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+  align-items: center;
+  font-size: 12px;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 100%;
+}
+
+.logo-signout button {
+  height: 30px;
+  width: 60%;
+  background-color: var(--overall-bg);
+  color: var(--outline-color);
+  border: 3px solid var(--outline-color);
+  font-weight: 450;
+  font-size: 15px;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+}
+
+.logo-2-upper-row {
+  display: flex;
+}
+.logo-2-upper-row img {
+  border-radius: 30%;
+  height: 80px;
+}
+

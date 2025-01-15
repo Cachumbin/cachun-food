@@ -7,11 +7,21 @@ import { IoClose } from "react-icons/io5";
 
 const LogoComponent = () => {
   const [user, setUser] = useState(null);
+  const [userDetails, setUserDetails] = useState(null);
 
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
+      if (user) {
+        setUserDetails({
+          displayName: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+        });
+      } else {
+        setUserDetails(null);
+      }
     });
     return () => unsubscribe();
   }, []);
@@ -30,7 +40,7 @@ const LogoComponent = () => {
           <h1 className="logoText">CachunFood</h1>
         </div>
         <div className="logo-content-page logo-2">
-          {user ? <SignOut /> : <SignIn />}
+          {user ? <SignOut info={userDetails} /> : <SignIn />}
         </div>
       </div>
     </div>

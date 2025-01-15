@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import SignIn from "./SignIn";
 import SignOut from "./SignOut";
-import Logo from "../assets/Recurso 1.png";
+import Logo from "../assets/cheese-cachunlogo.png";
+import { IoClose } from "react-icons/io5";
 
 const LogoComponent = () => {
   const [user, setUser] = useState(null);
@@ -16,12 +17,22 @@ const LogoComponent = () => {
   }, []);
 
   return (
-    <div className="logoContainer">
-      <div className="frontFace face">
-        <h1 className="logoText">CachunFood</h1>
-        <img src={Logo} alt="Logo" className="logoImg" />
+    <div className="logo-window">
+      <div className="logo-top-bar">
+        <button className="logo-button">
+          <IoClose className="logo-icon" />
+        </button>
+        <div className="logo-text-container">Logo</div>
       </div>
-      <div className="backFace face">{user ? <SignOut /> : <SignIn />}</div>
+      <div className="logo-content">
+        <div className="logo-content-page logo-1">
+          <img src={Logo} alt="Logo" className="logoImg" />
+          <h1 className="logoText">CachunFood</h1>
+        </div>
+        <div className="logo-content-page logo-2">
+          {user ? <SignOut /> : <SignIn />}
+        </div>
+      </div>
     </div>
   );
 };

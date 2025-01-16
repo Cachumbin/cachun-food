@@ -27,14 +27,14 @@ const LogoComponent = () => {
   }, []);
 
   return (
-    <div className="logo-window">
-      <div className="logo-top-bar">
-        <button className="logo-button">
-          <IoClose className="logo-icon" />
+    <div className="logo-window window">
+      <div className="logo-top-bar window-top-bar">
+        <button className="logo-button window-button">
+          <IoClose className="logo-icon window-icon" />
         </button>
-        <div className="logo-text-container">Logo</div>
+        <div className="logo-text-container window-text-container">Logo</div>
       </div>
-      <div className="logo-content">
+      <div className="logo-content window-content">
         <div className="logo-content-page logo-1">
           <img src={Logo} alt="Logo" className="logoImg" />
           <h1 className="logoText">CachunFood</h1>

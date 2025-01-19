@@ -127,15 +127,28 @@ body {
   justify-content: flex-start;
   align-items: center;
   height: 261px;
-  width: 100%;
+  width: calc(100% - 6px);
   background-color: var(--white-bg);
   border: 3px solid var(--outline-color);
   border-top: 0px;
   overflow-y: auto;
 }
 
+
 .window-content::-webkit-scrollbar {
-  width: 10px;
+  width: 30px;
+  background-color: var(--white-bg);
+  height: 100px;
+  z-index: 1;
+  position: fixed;
+}
+
+.window-content::-webkit-scrollbar-thumb {
+  background-color: var(--dark-bg);
+  border-top: 3px solid var(--outline-color);
+  border-bottom: 3px solid var(--outline-color);
+  border-left: 3px solid var(--outline-color);
+
 }
 
 

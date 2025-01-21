@@ -47,7 +47,11 @@ body {
   overflow: hidden;
 }
 
-
+.home {
+  display : flex;
+  flex-direction: row;
+  align-items: self-start;
+}
 
 
 /*---------Logo window---------------*/
@@ -151,9 +155,7 @@ body {
 
 }
 
-
-
-.logo-content-page {
+.window-content-page {
   flex: 1 0 auto;
   width: 100%;
   height: 100%;

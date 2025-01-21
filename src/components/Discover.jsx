@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Book from "./Book";
+import { IoClose } from "react-icons/io5";
 
 const Discover = () => {
   const [rawDiscover, setRawDiscover] = useState([]);
@@ -64,15 +64,26 @@ const Discover = () => {
   }, [rawDiscover]);
 
   return (
-    <div className="discover-container">
-      {discover.map((recipe, index) => (
-        <Book
-          key={index}
-          title={recipe.title}
-          ingredients={recipe.ingredients}
-          servings={recipe.servings}
-        />
-      ))}
+    <div className="discover-window window">
+      <div className="discover-top-bar window-top-bar">
+        <button className="discover-button window-button">
+          <IoClose className="discover-icon window-icon" />
+        </button>
+        <div className="discover-text-container window-text-container">
+          Discover
+        </div>
+      </div>
+      <div className="discover-content window-content">
+        {discover.map((recipe, index) => {
+          return (
+            <div key={index} className="window-content-page">
+              <h3>{recipe.title}</h3>
+              <p>{recipe.ingredients}</p>
+              <p>{recipe.servings}</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

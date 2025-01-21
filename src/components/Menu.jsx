@@ -1,5 +1,4 @@
 import Search from "./Search";
-import Book from "./Book";
 import { useState } from "react";
 
 const Menu = () => {
@@ -27,12 +26,9 @@ const Menu = () => {
       <ul>
         {result.map((recipe) => {
           return (
-            <Book
-              key={recipe.title}
-              title={recipe.title}
-              ingredients={recipe.ingredients}
-              servings={recipe.servings}
-            />
+            <li key={recipe.id}>
+              <h1>{recipe.title}</h1>
+            </li>
           );
         })}
       </ul>

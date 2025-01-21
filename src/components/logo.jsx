@@ -35,7 +35,7 @@ const LogoComponent = () => {
         <div className="logo-text-container window-text-container">Logo</div>
       </div>
       <div className="logo-content window-content">
-        <div className="logo-content-page logo-1">
+        <div className="window-content-page logo-1">
           <img src={Logo} alt="Logo" className="logoImg" />
           <h1 className="logoText">CachunFood</h1>
         </div>

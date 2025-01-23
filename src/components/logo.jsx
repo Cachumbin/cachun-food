@@ -39,7 +39,7 @@ const LogoComponent = () => {
           <img src={Logo} alt="Logo" className="logoImg" />
           <h1 className="logoText">CachunFood</h1>
         </div>
-        <div className="logo-content-page logo-2">
+        <div className="window-content-page logo-2">
           {user ? <SignOut info={userDetails} /> : <SignIn />}
         </div>
       </div>

@@ -4,6 +4,18 @@ import { IoClose } from "react-icons/io5";
 const Discover = () => {
   const [rawDiscover, setRawDiscover] = useState([]);
   const [discover, setDiscover] = useState([]);
+  const colors = [
+    "var(--yellow)",
+    "var(--pink-light)",
+    "var(--blue-light)",
+    "var(--purple)",
+    "var(--navy)",
+    "var(--red)",
+    "var(--peach)",
+    "var(--orange)",
+    "var(--pink-dark)",
+    "var(--green)",
+  ];
 
   useEffect(() => {
     const fetchConfig = {
@@ -35,7 +47,6 @@ const Discover = () => {
         const recipes = data.candidates[0].content.parts[0].text
           .replace("\n", "")
           .split(",");
-        console.log(recipes);
         setRawDiscover(recipes);
       });
   }, []);
@@ -63,6 +74,33 @@ const Discover = () => {
     fetchData();
   }, [rawDiscover]);
 
+  const distributeColors = (itemCount) => {
+    // Ensure all colors are used at least once
+    const shuffledColors = [...colors].sort(() => Math.random() - 0.5);
+    let usedColors = [...shuffledColors];
+    const result = [];
+    let lastColor = "";
+
+    for (let i = 0; i < itemCount; i++) {
+      if (usedColors.length === 0) {
+        // Reset the pool of unused colors
+        usedColors = [...shuffledColors];
+      }
+
+      // Ensure no two adjacent items have the same color
+      const nextColor = usedColors.find((color) => color !== lastColor);
+      result.push(nextColor);
+      lastColor = nextColor;
+
+      // Remove the chosen color from the pool
+      usedColors = usedColors.filter((color) => color !== nextColor);
+    }
+
+    return result;
+  };
+
+  const bgColors = distributeColors(discover.length);
+
   return (
     <div className="discover-window window">
       <div className="discover-top-bar window-top-bar">
@@ -75,11 +113,26 @@ const Discover = () => {
       </div>
       <div className="discover-content window-content">
         {discover.map((recipe, index) => {
+          const bgColor = index === 0 ? "var(--red)" : bgColors[index];
+          const textColor =
+            bgColor === "var(--navy)" || bgColor === "var(--purple)"
+              ? "white"
+              : "black";
+
           return (
-            <div key={index} className="window-content-page">
-              <h3>{recipe.title}</h3>
-              <p>{recipe.ingredients}</p>
-              <p>{recipe.servings}</p>
+            <div
+              key={index}
+              className="window-content-page discover-content-page"
+              style={{
+                backgroundColor: bgColor,
+                color: textColor,
+              }}
+            >
+              <div className="discover-recipe">
+                <h3 className="recipe-title">{recipe.title}</h3>
+                <p className="recipe-ing">{recipe.ingredients}</p>
+                <p className="recipe-servings">{recipe.servings}</p>
+              </div>
             </div>
           );
         })}

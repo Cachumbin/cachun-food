@@ -28,7 +28,7 @@ const Discover = () => {
           {
             parts: [
               {
-                text: "Give me the name of 20 simple recipes separated by a coma without unnecesary spaces, and spaces between words change it with '+' sign, and without any capital letter, dont make rare recipes, all normal, to fetch contents from an api",
+                text: "Give me the name of 15 simple recipes separated by a coma without unnecesary spaces, and spaces between words change it with '+' sign, and without any capital letter, dont make rare recipes, all normal, to fetch contents from an api",
               },
             ],
           },
@@ -83,16 +83,11 @@ const Discover = () => {
 
     for (let i = 0; i < itemCount; i++) {
       if (usedColors.length === 0) {
-        // Reset the pool of unused colors
         usedColors = [...shuffledColors];
       }
-
-      // Ensure no two adjacent items have the same color
       const nextColor = usedColors.find((color) => color !== lastColor);
       result.push(nextColor);
       lastColor = nextColor;
-
-      // Remove the chosen color from the pool
       usedColors = usedColors.filter((color) => color !== nextColor);
     }
 

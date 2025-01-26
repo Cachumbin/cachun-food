@@ -125,8 +125,16 @@ const Discover = () => {
             >
               <div className="discover-recipe">
                 <h3 className="recipe-title">{recipe.title}</h3>
-                <p className="recipe-ing">{recipe.ingredients}</p>
-                <p className="recipe-servings">{recipe.servings}</p>
+                <p className="recipe-ing">
+                  {recipe.ingredients.split("|").length}{" "}
+                  {recipe.ingredients.length === 1
+                    ? "Ingredient"
+                    : "Ingredients"}
+                </p>
+                <p className="recipe-servings">
+                  {recipe.servings[0]}{" "}
+                  {recipe.servings[0] === "1" ? "Serving" : "Servings"}
+                </p>
               </div>
             </div>
           );

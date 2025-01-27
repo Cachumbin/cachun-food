@@ -136,6 +136,7 @@ const Discover = () => {
                   {recipe.servings[0] === "1" ? "Serving" : "Servings"}
                 </p>
               </div>
+              <button className="recipe-button">Check More</button>
             </div>
           );
         })}

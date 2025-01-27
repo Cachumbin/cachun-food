@@ -263,3 +263,8 @@ body {
   font-size: 4rem;
   font-weight: 700;
 }
+
+.recipe-servings, .recipe-ing {
+  font-size: 2rem;
+}
+

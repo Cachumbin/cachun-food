@@ -1,4 +1,5 @@
 import { getAuth, signOut } from "firebase/auth";
+import PropTypes from "prop-types";
 
 const SignOutComponent = ({ info }) => {
   const handleSignOut = async () => {
@@ -22,6 +23,13 @@ const SignOutComponent = ({ info }) => {
       <button onClick={handleSignOut}>Sign Out</button>
     </div>
   );
+};
+SignOutComponent.propTypes = {
+  info: PropTypes.shape({
+    photoURL: PropTypes.string,
+    displayName: PropTypes.string,
+    email: PropTypes.string,
+  }).isRequired,
 };
 
 export default SignOutComponent;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { IoClose } from "react-icons/io5";
+import Recipe from "./Recipe";
 
 const Discover = () => {
   const [rawDiscover, setRawDiscover] = useState([]);
@@ -136,7 +137,7 @@ const Discover = () => {
                   {recipe.servings[0] === "1" ? "Serving" : "Servings"}
                 </p>
               </div>
-              <button className="recipe-button">Check More</button>
+              <button>Check More</button>
             </div>
           );
         })}

@@ -5,6 +5,7 @@ import Recipe from "./Recipe";
 const Discover = () => {
   const [rawDiscover, setRawDiscover] = useState([]);
   const [discover, setDiscover] = useState([]);
+  const [showRecipe, setShowRecipe] = useState(false);
   const colors = [
     "var(--yellow)",
     "var(--pink-light)",
@@ -137,7 +138,13 @@ const Discover = () => {
                   {recipe.servings[0] === "1" ? "Serving" : "Servings"}
                 </p>
               </div>
-              <button>Check More</button>
+              <button
+                onClick={() => setShowRecipe(!showRecipe)}
+                className="recipe-button"
+              >
+                Check More
+              </button>
+              <Recipe recipe={showRecipe} />
             </div>
           );
         })}

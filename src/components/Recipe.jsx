@@ -1,9 +1,11 @@
-const Recipe = () => {
-  return (
-    <dialog>
-      <h3>hola</h3>
-    </dialog>
-  );
+import PropTypes from "prop-types";
+
+const Recipe = ({ show }) => {
+  return <>{show && <div>hola</div>}</>;
+};
+
+Recipe.propTypes = {
+  show: PropTypes.bool.isRequired,
 };
 
 export default Recipe;

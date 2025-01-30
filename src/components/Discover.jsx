@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { IoClose } from "react-icons/io5";
-import Recipe from "./Recipe";
+import DialogBox from "./DialogBox";
 
 const Discover = () => {
   const [rawDiscover, setRawDiscover] = useState([]);
   const [discover, setDiscover] = useState([]);
-  const [showRecipe, setShowRecipe] = useState(false);
+  const [bgColors, setBgColors] = useState([]);
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
+
   const colors = [
     "var(--yellow)",
     "var(--pink-light)",
@@ -76,27 +78,25 @@ const Discover = () => {
     fetchData();
   }, [rawDiscover]);
 
-  const distributeColors = (itemCount) => {
-    // Ensure all colors are used at least once
-    const shuffledColors = [...colors].sort(() => Math.random() - 0.5);
-    let usedColors = [...shuffledColors];
-    const result = [];
-    let lastColor = "";
+  useEffect(() => {
+    if (discover.length > 0) {
+      const shuffledColors = [...colors].sort(() => Math.random() - 0.5);
+      let usedColors = [...shuffledColors];
+      const assignedColors = [];
 
-    for (let i = 0; i < itemCount; i++) {
-      if (usedColors.length === 0) {
-        usedColors = [...shuffledColors];
+      assignedColors.push("var(--red)"); // First item is always red
+
+      for (let i = 1; i < discover.length; i++) {
+        if (usedColors.length === 0) {
+          usedColors = [...shuffledColors]; // Refill colors if exhausted
+        }
+        const nextColor = usedColors.pop();
+        assignedColors.push(nextColor);
       }
-      const nextColor = usedColors.find((color) => color !== lastColor);
-      result.push(nextColor);
-      lastColor = nextColor;
-      usedColors = usedColors.filter((color) => color !== nextColor);
+
+      setBgColors(assignedColors);
     }
-
-    return result;
-  };
-
-  const bgColors = distributeColors(discover.length);
+  }, [discover]);
 
   return (
     <div className="discover-window window">
@@ -110,7 +110,7 @@ const Discover = () => {
       </div>
       <div className="discover-content window-content">
         {discover.map((recipe, index) => {
-          const bgColor = index === 0 ? "var(--red)" : bgColors[index];
+          const bgColor = bgColors[index] || "var(--red)";
           const textColor =
             bgColor === "var(--navy)" || bgColor === "var(--purple)"
               ? "white"
@@ -139,16 +139,33 @@ const Discover = () => {
                 </p>
               </div>
               <button
-                onClick={() => setShowRecipe(!showRecipe)}
+                onClick={() => setSelectedRecipe(recipe)}
                 className="recipe-button"
               >
                 Check More
               </button>
-              <Recipe recipe={showRecipe} />
             </div>
           );
         })}
       </div>
+
+      <DialogBox
+        isOpen={!!selectedRecipe}
+        onClose={() => setSelectedRecipe(null)}
+        title={selectedRecipe?.title}
+      >
+        {selectedRecipe && (
+          <>
+            <p>
+              <strong>Ingredients:</strong>{" "}
+              {selectedRecipe.ingredients.replace(/\|/g, ", ")}
+            </p>
+            <p>
+              <strong>Instructions:</strong> {selectedRecipe.instructions}
+            </p>
+          </>
+        )}
+      </DialogBox>
     </div>
   );
 };

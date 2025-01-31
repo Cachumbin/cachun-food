@@ -300,3 +300,65 @@ body {
 }
 
 
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dialog-window {
+  position: absolute;
+  width: 600px;
+  height: 400px;
+  background-color: var(--white-bg);
+  border: 3px solid var(--outline-color);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 10px 10px var(--outline-color);
+  z-index: 1100;
+}
+
+.dialog-top-bar {
+  display: flex;
+  height: 38px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 15px;
+  font-weight: 450;
+}
+
+.dialog-button {
+  height: 38px;
+  width: 38px;
+  background-color: var(--dark-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--outline-color);
+}
+
+.dialog-icon {
+  height: 30px;
+  width: 30px;
+  color: var(--outline-color);
+}
+
+.dialog-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: var(--white-bg);
+  border: 3px solid var(--outline-color);
+  border-left: 0px;
+  position: relative;
+}
+
+.dialog-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}

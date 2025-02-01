@@ -32,7 +32,9 @@ const LogoComponent = () => {
         <button className="logo-button window-button">
           <IoClose className="logo-icon window-icon" />
         </button>
-        <div className="logo-text-container window-text-container">Logo</div>
+        <div className="logo-text-container window-text-container">
+          <p className="window-text">Logo</p>
+        </div>
       </div>
       <div className="logo-content window-content">
         <div className="window-content-page logo-1">

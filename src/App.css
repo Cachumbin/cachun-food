@@ -108,6 +108,13 @@ body {
   position: relative;
 }
 
+.window-text {
+  z-index: 2;
+  background-color: var(--white-bg);
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 .window-text-container::before,
 .window-text-container::after {
   content: '';
@@ -115,7 +122,7 @@ body {
   top: 50%;
   transform: translateY(-50%);
   height: 3px;
-  width: calc(45% - 25px);
+  width: 50%;
   background-color: var(--outline-color);
   color: var(--outline-color);
   margin-right: 10px;
@@ -303,7 +310,7 @@ body {
 .dialog-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.0);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -312,13 +319,11 @@ body {
 
 .dialog-window {
   position: absolute;
-  width: 600px;
-  height: 400px;
+  width: 1100px;
+  height: 700px;
   background-color: var(--white-bg);
-  border: 3px solid var(--outline-color);
   display: flex;
   flex-direction: column;
-  box-shadow: 10px 10px var(--outline-color);
   z-index: 1100;
 }
 
@@ -328,6 +333,7 @@ body {
   font-family: "Montserrat", sans-serif;
   font-size: 15px;
   font-weight: 450;
+  width: 100%;
 }
 
 .dialog-button {
@@ -352,13 +358,12 @@ body {
   align-items: center;
   width: 100%;
   background-color: var(--white-bg);
-  border: 3px solid var(--outline-color);
   border-left: 0px;
   position: relative;
 }
 
 .dialog-content {
   flex: 1;
-  padding: 20px;
   overflow-y: auto;
+  width: calc(100% - 6px);
 }

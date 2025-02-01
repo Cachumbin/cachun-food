@@ -19,7 +19,7 @@ const DialogBox = ({ isOpen, onClose, title, children }) => {
             <IoClose className="dialog-icon window-icon" />
           </button>
           <div className="dialog-text-container window-text-container">
-            {title}
+            <p className="window-text">{title}</p>
           </div>
         </div>
         <div className="dialog-content window-content">{children}</div>

@@ -105,7 +105,7 @@ const Discover = () => {
           <IoClose className="discover-icon window-icon" />
         </button>
         <div className="discover-text-container window-text-container">
-          Discover
+          <p className="window-text">Discover</p>
         </div>
       </div>
       <div className="discover-content window-content">

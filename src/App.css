@@ -138,6 +138,7 @@ body {
 }
 
 .window-content {
+  font-family: "Montserrat", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

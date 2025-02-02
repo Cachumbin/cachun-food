@@ -158,7 +158,16 @@ const Discover = () => {
           <>
             <p>
               <strong>Ingredients:</strong>{" "}
-              {selectedRecipe.ingredients.replace(/\|/g, ", ")}
+              <ul>
+                {selectedRecipe.ingredients
+                  .split("|")
+                  .map((ingredient, index) => (
+                    <li key={index}>
+                      {ingredient}
+                      <br />
+                    </li>
+                  ))}
+              </ul>
             </p>
             <p>
               <strong>Instructions:</strong> {selectedRecipe.instructions}

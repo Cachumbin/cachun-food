@@ -24,9 +24,7 @@ const Discover = () => {
   useEffect(() => {
     const fetchConfig = {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         contents: [
           {
@@ -56,25 +54,32 @@ const Discover = () => {
   }, []);
 
   useEffect(() => {
-    async function fetchData() {
-      const fetchedData = [];
+    if (rawDiscover.length === 0) return;
+
+    setDiscover([]);
+
+    const fetchData = async () => {
       for (let recipe of rawDiscover) {
-        const response = await fetch(
-          `https://api.api-ninjas.com/v1/recipe?query=${recipe}`,
-          {
-            method: "GET",
-            headers: {
-              "X-Api-Key": import.meta.env.VITE_API_NINJAS_API_KEY,
-            },
+        try {
+          const response = await fetch(
+            `https://api.api-ninjas.com/v1/recipe?query=${recipe}`,
+            {
+              method: "GET",
+              headers: {
+                "X-Api-Key": import.meta.env.VITE_API_NINJAS_API_KEY,
+              },
+            }
+          );
+          const data = await response.json();
+          if (data[1] !== undefined) {
+            setDiscover((prevDiscover) => [...prevDiscover, data[1]]);
           }
-        );
-        const data = await response.json();
-        if (data[1] !== undefined) {
-          fetchedData.push(data[1]);
+        } catch (error) {
+          console.error("Error fetching recipe:", error);
         }
       }
-      setDiscover(fetchedData);
-    }
+    };
+
     fetchData();
   }, [rawDiscover]);
 
@@ -84,17 +89,18 @@ const Discover = () => {
       let usedColors = [...shuffledColors];
       const assignedColors = [];
 
-      assignedColors.push("var(--red)"); // First item is always red
+      assignedColors.push("var(--red)");
 
       for (let i = 1; i < discover.length; i++) {
         if (usedColors.length === 0) {
-          usedColors = [...shuffledColors]; // Refill colors if exhausted
+          usedColors = [...shuffledColors];
         }
-        const nextColor = usedColors.pop();
-        assignedColors.push(nextColor);
+        assignedColors.push(usedColors.pop());
       }
 
       setBgColors(assignedColors);
+    } else {
+      setBgColors([]);
     }
   }, [discover]);
 
@@ -148,7 +154,6 @@ const Discover = () => {
           );
         })}
       </div>
-
       <DialogBox
         isOpen={!!selectedRecipe}
         onClose={() => setSelectedRecipe(null)}
@@ -157,15 +162,12 @@ const Discover = () => {
         {selectedRecipe && (
           <>
             <p>
-              <strong>Ingredients:</strong>{" "}
+              <strong>Ingredients:</strong>
               <ul>
                 {selectedRecipe.ingredients
                   .split("|")
                   .map((ingredient, index) => (
-                    <li key={index}>
-                      {ingredient}
-                      <br />
-                    </li>
+                    <li key={index}>{ingredient}</li>
                   ))}
               </ul>
             </p>

@@ -9,10 +9,32 @@ const DialogBox = ({ isOpen, onClose, title, children }) => {
     setIsVisible(isOpen);
   }, [isOpen]);
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
   if (!isVisible) return null;
 
+  const handleOverlayClick = (event) => {
+    if (event.target === event.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="dialog-overlay">
+    <div className="dialog-overlay" onClick={handleOverlayClick}>
       <div className="dialog-window">
         <div className="dialog-top-bar window-top-bar">
           <button className="dialog-button window-button" onClick={onClose}>

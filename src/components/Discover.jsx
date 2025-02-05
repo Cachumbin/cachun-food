@@ -85,20 +85,30 @@ const Discover = () => {
 
   useEffect(() => {
     if (discover.length > 0) {
-      const shuffledColors = [...colors].sort(() => Math.random() - 0.5);
-      let usedColors = [...shuffledColors];
-      const assignedColors = [];
+      let storedColors = sessionStorage.getItem("discoverColors");
 
-      assignedColors.push("var(--red)");
+      if (storedColors) {
+        setBgColors(JSON.parse(storedColors));
+      } else {
+        const shuffledColors = [...colors].sort(() => Math.random() - 0.5);
+        let usedColors = [...shuffledColors];
+        const assignedColors = [];
 
-      for (let i = 1; i < discover.length; i++) {
-        if (usedColors.length === 0) {
-          usedColors = [...shuffledColors];
+        assignedColors.push("var(--red)");
+
+        for (let i = 1; i < discover.length; i++) {
+          if (usedColors.length === 0) {
+            usedColors = [...shuffledColors];
+          }
+          assignedColors.push(usedColors.pop());
         }
-        assignedColors.push(usedColors.pop());
-      }
 
-      setBgColors(assignedColors);
+        sessionStorage.setItem(
+          "discoverColors",
+          JSON.stringify(assignedColors)
+        );
+        setBgColors(assignedColors);
+      }
     } else {
       setBgColors([]);
     }
@@ -144,12 +154,15 @@ const Discover = () => {
                   {recipe.servings[0] === "1" ? "Serving" : "Servings"}
                 </p>
               </div>
-              <button
-                onClick={() => setSelectedRecipe(recipe)}
-                className="recipe-button"
-              >
-                Check More
-              </button>
+              <div className="window-button-container">
+                <button
+                  onClick={() => setSelectedRecipe(recipe)}
+                  className="recipe-button"
+                >
+                  Check More
+                </button>
+                <button className="recipe-button">Save Recipe</button>
+              </div>
             </div>
           );
         })}

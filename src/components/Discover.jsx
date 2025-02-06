@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { IoClose } from "react-icons/io5";
 import DialogBox from "./DialogBox";
+import { doc, updateDoc, arrayUnion, setDoc, getDoc } from "firebase/firestore";
+import { auth, db } from "./firebaseConfig";
 
 const Discover = () => {
   const [rawDiscover, setRawDiscover] = useState([]);
@@ -114,6 +116,31 @@ const Discover = () => {
     }
   }, [discover]);
 
+  const saveRecipe = async (recipe) => {
+    if (!auth.currentUser) {
+      alert("You need to be logged in to save a recipe");
+      return;
+    }
+
+    const userRef = doc(db, "users", auth.currentUser.uid);
+
+    try {
+      const docSnap = await getDoc(userRef);
+      if (!docSnap.exists()) {
+        await setDoc(userRef, { savedRecipes: [] });
+      }
+
+      await updateDoc(userRef, {
+        savedRecipes: arrayUnion(recipe),
+      });
+
+      alert("Recipe saved successfully!");
+    } catch (error) {
+      console.error("Error saving recipe:", error);
+      alert("Failed to save the recipe.");
+    }
+  };
+
   return (
     <div className="discover-window window">
       <div className="discover-top-bar window-top-bar">
@@ -161,7 +188,12 @@ const Discover = () => {
                 >
                   Check More
                 </button>
-                <button className="recipe-button">Save Recipe</button>
+                <button
+                  onClick={() => saveRecipe(recipe)}
+                  className="recipe-button"
+                >
+                  Save Recipe
+                </button>
               </div>
             </div>
           );

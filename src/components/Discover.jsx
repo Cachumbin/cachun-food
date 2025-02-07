@@ -1,7 +1,14 @@
 import { useState, useEffect } from "react";
 import { IoClose } from "react-icons/io5";
 import DialogBox from "./DialogBox";
-import { doc, updateDoc, arrayUnion, setDoc, getDoc } from "firebase/firestore";
+import {
+  doc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+  setDoc,
+  getDoc,
+} from "firebase/firestore";
 import { auth, db } from "./firebaseConfig";
 
 const Discover = () => {
@@ -9,6 +16,7 @@ const Discover = () => {
   const [discover, setDiscover] = useState([]);
   const [bgColors, setBgColors] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const [savedRecipes, setSavedRecipes] = useState([]);
 
   const colors = [
     "var(--yellow)",
@@ -22,6 +30,21 @@ const Discover = () => {
     "var(--pink-dark)",
     "var(--green)",
   ];
+
+  useEffect(() => {
+    const fetchSavedRecipes = async () => {
+      if (!auth.currentUser) return;
+
+      const userRef = doc(db, "users", auth.currentUser.uid);
+      const docSnap = await getDoc(userRef);
+
+      if (docSnap.exists()) {
+        setSavedRecipes(docSnap.data().savedRecipes || []);
+      }
+    };
+
+    fetchSavedRecipes();
+  }, []);
 
   useEffect(() => {
     const fetchConfig = {
@@ -118,7 +141,7 @@ const Discover = () => {
 
   const saveRecipe = async (recipe) => {
     if (!auth.currentUser) {
-      alert("You need to be logged in to save a recipe");
+      alert("You must be logged in to save recipes.");
       return;
     }
 
@@ -134,10 +157,25 @@ const Discover = () => {
         savedRecipes: arrayUnion(recipe),
       });
 
-      alert("Recipe saved successfully!");
+      setSavedRecipes((prev) => [...prev, recipe]); // Update local state
     } catch (error) {
       console.error("Error saving recipe:", error);
-      alert("Failed to save the recipe.");
+    }
+  };
+
+  const unsaveRecipe = async (recipe) => {
+    if (!auth.currentUser) return;
+
+    const userRef = doc(db, "users", auth.currentUser.uid);
+
+    try {
+      await updateDoc(userRef, {
+        savedRecipes: arrayRemove(recipe),
+      });
+
+      setSavedRecipes((prev) => prev.filter((r) => r.title !== recipe.title)); // Remove from local state
+    } catch (error) {
+      console.error("Error unsaving recipe:", error);
     }
   };
 
@@ -189,10 +227,16 @@ const Discover = () => {
                   Check More
                 </button>
                 <button
-                  onClick={() => saveRecipe(recipe)}
+                  onClick={() =>
+                    savedRecipes.find((r) => r.title === recipe.title)
+                      ? unsaveRecipe(recipe)
+                      : saveRecipe(recipe)
+                  }
                   className="recipe-button"
                 >
-                  Save Recipe
+                  {savedRecipes.find((r) => r.title === recipe.title)
+                    ? "Unsave"
+                    : "Save"}
                 </button>
               </div>
             </div>

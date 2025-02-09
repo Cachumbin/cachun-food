@@ -39,8 +39,8 @@ body {
     0deg,
     var(--outline-color),
     var(--outline-color) 2px,
-    rgb(0,0,0,0) 2px,
-    rgb(0,0,0,0)  40px
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0)  40px
   ), repeating-linear-gradient(
     90deg,
     var(--outline-color),

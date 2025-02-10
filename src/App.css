@@ -369,3 +369,46 @@ body {
   overflow-y: auto;
   width: calc(100% - 6px);
 }
+
+.error-404-window {
+  height: 700px;
+  width: 900px;
+  margin: 100px;
+}
+
+.error-404-content {
+  background-color: var(--blue-light);
+  overflow: hidden;
+}
+
+.error-404-content h1 {
+  font-family: 'Cartoon';
+  font-size: 80px;
+  margin: 30px;
+}
+
+.superposed-container {
+  position: relative;
+  width: fit-content;
+  display: inline-block;
+}
+
+.superposed-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto; 
+}
+
+.superposed-container img:first-child {
+  position: relative;
+  rotate: 170deg;
+  transform: scale(1.2
+  );
+  top: 100px;
+}
+
+.superposed-container img:last-child {
+  transform: scale(0.5) translateY(-400px);
+}

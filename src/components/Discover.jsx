@@ -24,7 +24,6 @@ const Discover = () => {
     "var(--blue-light)",
     "var(--purple)",
     "var(--navy)",
-    "var(--red)",
     "var(--peach)",
     "var(--orange)",
     "var(--pink-dark)",
@@ -55,7 +54,7 @@ const Discover = () => {
           {
             parts: [
               {
-                text: "Give me the name of 15 simple recipes separated by a coma without unnecesary spaces, and spaces between words change it with '+' sign, and without any capital letter, dont make rare recipes, all normal, to fetch contents from an api",
+                text: "Give me the name of 15 simple recipes separated by a comma without unnecessary spaces, and spaces between words replaced with '+' sign, all in lowercase, normal recipes only.",
               },
             ],
           },
@@ -108,34 +107,22 @@ const Discover = () => {
     fetchData();
   }, [rawDiscover]);
 
+  function shuffleArray(array) {
+    let shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
+
   useEffect(() => {
-    if (discover.length > 0) {
-      let storedColors = sessionStorage.getItem("discoverColors");
+    if (discover.length != 0) {
+      const randomColors = shuffleArray(colors);
 
-      if (storedColors) {
-        setBgColors(JSON.parse(storedColors));
-      } else {
-        const shuffledColors = [...colors].sort(() => Math.random() - 0.5);
-        let usedColors = [...shuffledColors];
-        const assignedColors = [];
-
-        assignedColors.push("var(--red)");
-
-        for (let i = 1; i < discover.length; i++) {
-          if (usedColors.length === 0) {
-            usedColors = [...shuffledColors];
-          }
-          assignedColors.push(usedColors.pop());
-        }
-
-        sessionStorage.setItem(
-          "discoverColors",
-          JSON.stringify(assignedColors)
-        );
-        setBgColors(assignedColors);
+      for (let i = 0; i < discover.length; i++) {
+        setBgColors((prev) => [...prev, randomColors[i % randomColors.length]]);
       }
-    } else {
-      setBgColors([]);
     }
   }, [discover]);
 
@@ -157,7 +144,7 @@ const Discover = () => {
         savedRecipes: arrayUnion(recipe),
       });
 
-      setSavedRecipes((prev) => [...prev, recipe]); // Update local state
+      setSavedRecipes((prev) => [...prev, recipe]);
     } catch (error) {
       console.error("Error saving recipe:", error);
     }
@@ -173,7 +160,7 @@ const Discover = () => {
         savedRecipes: arrayRemove(recipe),
       });
 
-      setSavedRecipes((prev) => prev.filter((r) => r.title !== recipe.title)); // Remove from local state
+      setSavedRecipes((prev) => prev.filter((r) => r.title !== recipe.title));
     } catch (error) {
       console.error("Error unsaving recipe:", error);
     }
@@ -191,11 +178,11 @@ const Discover = () => {
       </div>
       <div className="discover-content window-content">
         {discover.map((recipe, index) => {
-          const bgColor = bgColors[index] || "var(--red)";
+          const bgColor = index === 0 ? "var(--red)" : bgColors[index];
           const textColor =
             bgColor === "var(--navy)" || bgColor === "var(--purple)"
               ? "white"
-              : "black";
+              : "var(--outline-color)";
 
           return (
             <div

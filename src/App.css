@@ -54,11 +54,23 @@ body {
 }
 
 .home {
-  display : flex;
+  display : grid;
   flex-direction: row;
   align-items: self-start;
+  grid-template-columns: 1fr 6fr;
+  grid-template-rows: 1fr;
+
 }
 
+.header {
+  grid-column: 1 / 2;
+}
+
+.main-container {
+  grid-column: 2 / 3;
+  align-self: center;
+  justify-self: center;
+}
 
 /*---------Logo window---------------*/
 
@@ -252,7 +264,7 @@ body {
 
 .discover-window {
   height: 700px;
-  width: 1100px;
+  width: 1300px;
   margin: 52px;
 }
 

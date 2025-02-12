@@ -95,7 +95,10 @@ const Discover = () => {
             }
           );
           const data = await response.json();
-          if (data[1] !== undefined) {
+          if (
+            data[1] !== undefined &&
+            !discover.find((r) => r.title === data[1].title)
+          ) {
             setDiscover((prevDiscover) => [...prevDiscover, data[1]]);
           }
         } catch (error) {

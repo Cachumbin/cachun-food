@@ -1,32 +1,9 @@
-import { useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import SignIn from "./SignIn";
-import SignOut from "./SignOut";
 import Logo from "../assets/cheese-cachunlogo.png";
 import { IoClose } from "react-icons/io5";
 
 const LogoComponent = () => {
-  const [user, setUser] = useState(null);
-  const [userDetails, setUserDetails] = useState(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-      if (user) {
-        setUserDetails({
-          displayName: user.displayName,
-          email: user.email,
-          photoURL: user.photoURL,
-        });
-      } else {
-        setUserDetails(null);
-      }
-    });
-    return () => unsubscribe();
-  }, []);
 
   const goToHome = () => {
     navigate("/");
@@ -52,9 +29,6 @@ const LogoComponent = () => {
             style={{ cursor: "pointer" }}
           />
           <h1 className="logoText">CachunFood</h1>
-        </div>
-        <div className="window-content-page logo-2">
-          {user ? <SignOut info={userDetails} /> : <SignIn />}
         </div>
       </div>
     </div>

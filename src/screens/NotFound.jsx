@@ -1,4 +1,5 @@
 import Logo from "../components/logo";
+import NavMenu from "../components/NavMenu";
 import { IoClose } from "react-icons/io5";
 import Construction from "../assets/construction.png";
 import Tape from "../assets/yellow-tape.png";
@@ -8,6 +9,7 @@ const NotFound = () => {
     <div className="home">
       <section className="header">
         <Logo />
+        <NavMenu />
       </section>
       <main className="main-container">
         <div className="window error-404-window">

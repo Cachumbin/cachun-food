@@ -46,16 +46,23 @@ const NavMenu = () => {
           <IoClose className="navmenu-icon window-icon" />
         </button>
         <div className="navmenu-text-container window-text-container">
-          <p className="window-text">Logo</p>
+          <p className="window-text">Navigate</p>
         </div>
       </div>
       <div className="navmenu-content window-content">
         <div className="window-content-page">
           {user ? <SignOut info={userDetails} /> : <SignIn />}
-          <button onClick={goToHome}>Home</button>
-          <button onClick={goToSaved}>Saved</button>
-
-          <button onClick={goToSearch}>Search</button>
+          <div className="button-container">
+            <button className="nav-button" onClick={goToHome}>
+              Home
+            </button>
+            <button className="nav-button" onClick={goToSaved}>
+              Saved
+            </button>
+            <button className="nav-button" onClick={goToSearch}>
+              Search
+            </button>
+          </div>
         </div>
       </div>
     </div>

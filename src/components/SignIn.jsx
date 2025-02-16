@@ -16,9 +16,11 @@ const SignInComponent = () => {
   };
 
   return (
-    <div>
-      <h2>Sign In</h2>
-      <button onClick={handleGoogleSignIn}>Sign In with Google</button>
+    <div className="signin">
+      <h2 className="signin-title">Sign In</h2>
+      <button className="nav-button signin-button" onClick={handleGoogleSignIn}>
+        Sign In with Google
+      </button>
       {error && <p>{error}</p>}
     </div>
   );

@@ -257,7 +257,8 @@ body {
 }
 .logo-2-upper-row img {
   border-radius: 30%;
-  height: 80px;
+  height: 60px;
+  margin: 20px;
 }
 
 /*-----------discover-window-----------*/
@@ -460,4 +461,24 @@ body {
   margin-top: 25px;
   cursor: pointer;
 
+}
+
+.signin-button {
+  height: 60px;
+}
+
+.signin {
+  display: flex;
+  flex-direction: column;
+  font-family: "Montserrat", sans-serif;
+  align-items: center;
+  font-size: 12px;
+  justify-content: space-between;
+  width: 100%;
+  height: 40%;
+}
+
+.signin-title {
+  font-family: 'Cartoon';
+  font-size: 4rem;
 }

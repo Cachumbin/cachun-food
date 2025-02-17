@@ -32,7 +32,9 @@ html {
 
 /*-------------body--------------------*/
 
-
+button {
+  cursor: pointer;
+}
 
 body {
   background: repeating-linear-gradient(
@@ -481,4 +483,12 @@ body {
 .signin-title {
   font-family: 'Cartoon';
   font-size: 4rem;
+}
+
+.nav-button:hover {
+  background-color: var(--dark-bg);
+}
+
+.nav-button:active {
+  background-color: var(--white-bg);
 }

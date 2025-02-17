@@ -20,7 +20,9 @@ const SignOutComponent = ({ info }) => {
           <p>{info.email}</p>
         </div>
       </div>
-      <button onClick={handleSignOut}>Sign Out</button>
+      <button className="nav-button" onClick={handleSignOut}>
+        Sign Out
+      </button>
     </div>
   );
 };

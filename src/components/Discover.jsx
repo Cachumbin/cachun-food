@@ -18,17 +18,27 @@ const Discover = () => {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
   const [savedRecipes, setSavedRecipes] = useState([]);
 
-  const colors = [
-    "var(--yellow)",
-    "var(--pink-light)",
-    "var(--blue-light)",
-    "var(--purple)",
-    "var(--navy)",
-    "var(--peach)",
-    "var(--orange)",
-    "var(--pink-dark)",
-    "var(--green)",
-  ];
+  useEffect(() => {
+    const colors = [
+      "var(--yellow)",
+      "var(--pink-light)",
+      "var(--blue-light)",
+      "var(--purple)",
+      "var(--navy)",
+      "var(--peach)",
+      "var(--orange)",
+      "var(--pink-dark)",
+      "var(--green)",
+    ];
+
+    if (discover.length != 0) {
+      const randomColors = shuffleArray(colors);
+
+      for (let i = 0; i < discover.length; i++) {
+        setBgColors((prev) => [...prev, randomColors[i % randomColors.length]]);
+      }
+    }
+  }, [discover]);
 
   useEffect(() => {
     const fetchSavedRecipes = async () => {
@@ -95,10 +105,7 @@ const Discover = () => {
             }
           );
           const data = await response.json();
-          if (
-            data[1] !== undefined &&
-            !discover.find((r) => r.title === data[1].title)
-          ) {
+          if (data[1] !== undefined) {
             setDiscover((prevDiscover) => [...prevDiscover, data[1]]);
           }
         } catch (error) {
@@ -118,16 +125,6 @@ const Discover = () => {
     }
     return shuffled;
   }
-
-  useEffect(() => {
-    if (discover.length != 0) {
-      const randomColors = shuffleArray(colors);
-
-      for (let i = 0; i < discover.length; i++) {
-        setBgColors((prev) => [...prev, randomColors[i % randomColors.length]]);
-      }
-    }
-  }, [discover]);
 
   const saveRecipe = async (recipe) => {
     if (!auth.currentUser) {
